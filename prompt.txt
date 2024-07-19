@@ -1,0 +1,89 @@
+SYSTEM:
+
+You will improve the changelog message of the release of Dagger, a programmable CI/CD engine.
+
+You will be provided with the initial release message that needs to be improve, delimited by triple quotes. The release message is formatted markdown
+
+You will also be provided with an extra list, also delimited with triple quotes. This list is composed of git commit IDs and messages, optionally ending with a Pull Request number between parenthesis.
+
+Return an improved release message, using the commit messages that are not part of the initial release process. Ensure commit messages are not repeated.
+
+
+
+USER:
+
+
+"""## v0.12.1 - 2024-07-18
+
+
+### Added
+- cli: add support for passing `Socket`s as arguments from the CLI to Functions by @sipsma in https://github.com/dagger/dagger/pull/7804
+- cli: new `--compat` flag for develop to target a specific api version by @jedevc in https://github.com/dagger/dagger/pull/7948
+
+### Changed
+- cloud: traces are not uploaded for `dagger version`/`dagger login`/`dagger logout`/etc by @jedevc in https://github.com/dagger/dagger/pull/7928
+
+### Fixed
+- core: allow `@` in local module name by @grouville in https://github.com/dagger/dagger/pull/7891
+- cli: fix `dagger version` sometimes disappearing by @jedevc in https://github.com/dagger/dagger/pull/7919
+- cli: avoid api errors when calling modules in compat mode by @jedevc in https://github.com/dagger/dagger/pull/7924
+
+### What to do next?
+- Read the [documentation](https://docs.dagger.io)
+- Join our [Discord server](https://discord.gg/dagger-io)
+- Follow us on [Twitter](https://twitter.com/dagger_io)
+"""
+
+"""78fd31cf2 sdk: Bump engine dependency to v0.12.1 (#7978)
+961b24fe6 ci: overwrite artifacts if already there (#7977)
+9623334b2 chore: add release notes for v0.12.1 (#7976)
+b0623927e tests: propagate the test docker config through
+9b2421c54 tests: remove checks from `TestModuleDevelopVersion`
+0760e783c chore: remove the old linters dir (#7971)
+4a53df753 feat: add vim gg/G movement operators (#7958)
+7f566bf6d pipelines: daggerDev().cli().binary() (#7946)
+16c1ccf0c pipeline: bump docusaurus module (#7936)
+01015ec65 chore: fix dependabot for docs (#7959)
+9827e559b pipelines: streamline codegen (#7872)
+1a28a7a46 engine: fix terminal in combination w/ custom CAs (#7969)
+33449f32a feat: add --compat flag to dagger to specify api version (#7948)
+45b3ef93c ci: fix broken cli publishing from upgrade to v0.12 (#7949)
+93d478115 ci: fix upload engine logs with multiple dev-engine jobs (#7947)
+36ffd70c9 fix: `Module.serve` should not modify the caller's core module (#7924)
+b6b306ce8 ci: update DAGGER_CLOUD_TOKEN (#7962)
+bdafadc60 docs: add feedback into Jenkins guide (#7968)
+4c4e4960d Update Jenkins Integration Guide  (#7892)
+662b6e850 time out draining after 10 seconds (#7966)
+eb2b25079 core: fully isolate secrets+sockets per-client
+6fe258721 engine: rm unusued fields in buildkit client
+a80d17608 dagql: align names of call w/ proto
+e7e7335dd docs: fixup linters examples with ruff (#7945)
+76859d721 ci: fix go linter (#7950)
+9ee9e4906 chore: fix some comments (#7926)
+c9744d82b chore(dev/ruff): refactor base image for ruff module (#7952)
+ac8188a08 pipelines: upgrade to Dagger 0.12 (#7939)
+267f6909b login: tweak wording (#7942)
+93fa6e925 Improve releasing during v0.12.0 (#7904)
+a3af9aef7 github: upload dev engine logs (#7933)
+a3ab1056e login: open browser automatically (#7932)
+45741c2e7 fix: only initialize telemetry when connecting to engine (#7928)
+a29dadbb5 ci: update API reference on new CI (#7937)
+4c0e5e404 docs: update golang module version (#7934)
+621115368 shorter span name for dagger call (#7927)
+f7944784d Do not use `quote` in labels to make it a valid string (#7930)
+2466cc190 fix: ensure dagger version uses otel output (#7919)
+af377ac35 docs: update ts docs field to `@func` (#7714)
+3bedee341 fix(helm): ensure appVersion is always semver (#7917)
+f64a64f56 bump apko dependency for newer Bass SDK (#7908)
+5eca7826a fix(core): allow local module ref with @ (#7891)
+5ef8a7118 Add Windows Container Entry to FAQ (#7911)
+701705f67 fix(sdk/elixir): fix codegen break the runtime (#7844)
+482c3b088 Revert golang version change
+af28b9295 docs: update hello module
+2f83145f1 docs: update wolfi module
+8e42c8903 chore: fix helm versions to keep semver in version field (#7906)
+a7e198048 docs: update docs with breaking changes from v0.12.0 (part 2) (#7905)
+845c0e57e sdk: Bump engine dependency to v0.12.0 (#7903)
+999dd288b Docs: Adopting Dagger (#7893)
+db089a9e3 docs: update docs with breaking changes from v0.12.0 (#7884)
+"""
