@@ -18,7 +18,6 @@ import (
 	"context"
 	"dagger/smartchangelog/internal/dagger"
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/sashabaranov/go-openai"
@@ -70,7 +69,6 @@ func (m *Smartchangelog) CommitsSinceTag(
 
 	out, err := baseCtr().
 		WithExec([]string{"git", "log", fmt.Sprintf("%s..HEAD", tag), "--oneline"}).
-		Terminal().
 		Stdout(ctx)
 	if err != nil {
 		return nil, err
@@ -82,12 +80,13 @@ func (m *Smartchangelog) ReadFile(ctx context.Context, path string) (string, err
 	return baseCtr().File(path).Contents(ctx)
 }
 
-func (m *Smartchangelog) Changelog(ctx context.Context) (string, error) {
-	apiKey := os.Getenv("OPENAI_API_KEY")
-	if apiKey == "" {
-		return "", fmt.Errorf("OPENAI_API_KEY is required")
+func (m *Smartchangelog) Changelog(ctx context.Context, apiKey dagger.Secret) (string, error) {
+	apiKeyPlain, err := apiKey.Plaintext(ctx)
+	if err != nil {
+		return "", err
 	}
-	client := openai.NewClient(apiKey)
+
+	client := openai.NewClient(apiKeyPlain)
 
 	commits, err := m.CommitsSinceTag(ctx, "v0.12.0")
 	if err != nil {
